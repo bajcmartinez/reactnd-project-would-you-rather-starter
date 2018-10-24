@@ -14,6 +14,7 @@
 
   .question-list-exit-active {
     opacity: 0.01;
-    transition: opacity 300ms ease-in;
+    transform: translateX(100px);
+    transition: opacity 300ms ease-in, transform 300ms ease-in;
   }
 }
