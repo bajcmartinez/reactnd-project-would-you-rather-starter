@@ -20,6 +20,7 @@ class App extends Component {
                         <Auth>
                             <Route path='/auth/pending' component={Pending} />
                             <Route path='/auth/answered' component={Answered} />
+                            <Route path='/auth/question/:id' component={Answered} />
                         </Auth>
                     )} />
                 </Fragment>

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, ListGroup, Button, FormCheck, ProgressBar } from 'react-bootstrap';
 
-import * as style from './Question.module.scss';
+import * as style from './QuestionCard.module.scss';
 import { handleSaveQuestionAnswer } from "../actions/questions";
 
-class Question extends Component {
+class QuestionCard extends Component {
     state = {
         selectedOption: null,
         disabled: false
@@ -118,4 +118,4 @@ function mapStateToProps ({ questions, auth }, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps)(QuestionCard);

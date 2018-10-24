@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Question from './Question';
+import QuestionCard from './QuestionCard';
 
 class Dashboard extends Component {
     render() {
@@ -10,7 +10,7 @@ class Dashboard extends Component {
         return (
             <div>
                 {questions && questions.map((questionId) => (
-                    <Question key={questionId} id={questionId}/>
+                    <QuestionCard key={questionId} id={questionId}/>
                 ))}
             </div>
         )
