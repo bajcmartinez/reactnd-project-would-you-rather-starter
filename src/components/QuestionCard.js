@@ -56,7 +56,16 @@ class QuestionCard extends Component {
         const { answered } = this.state;
 
         if (!question) {
-            return (<div>Loading...</div>)
+            return (
+                <Card bg='danger' text="white" className={style.question}>
+                    <Card.Body>
+                        <Card.Title>The question you are looking for does not exist!</Card.Title>
+                        <Card.Text>
+                            Please validate that the link you got is correct, we can't find your question in our database!
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            )
         }
 
         const title = answered ? `${author.name} asked, Would you rather...` : `${author.name} asks, Would you rather...`;

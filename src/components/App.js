@@ -1,5 +1,6 @@
-import React, {Component, Fragment} from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Login from './Login';
@@ -7,6 +8,7 @@ import Auth from './Auth';
 import Pending from './Pending';
 import Answered from "./Answered";
 import Question from './Question';
+import NotFound from './NotFound';
 
 class App extends Component {
     render() {
@@ -14,17 +16,19 @@ class App extends Component {
 
         return (
             <Router>
-                <Fragment>
+                <Switch>
                     <Route path='/' exact render={() => auth.user ? <Redirect to='/auth/pending' /> : <Redirect to='/login' />} />
-                    <Route path='/login' component={Login} />
+                    <Route exact path='/login' component={Login} />
                     <Route path='/auth' render={() => (
-                        <Auth>
-                            <Route path='/auth/pending' component={Pending} />
-                            <Route path='/auth/answered' component={Answered} />
-                            <Route path='/auth/question/:id' component={Question} />
-                        </Auth>
+                        <Switch>
+                            <Route exact path='/auth/pending' render={() => (<Auth><Pending /></Auth>)} />
+                            <Route exact path='/auth/answered' render={() => (<Auth><Answered /></Auth>)} />
+                            <Route exact path='/auth/question/:id' render={({match}) => (<Auth><Question match={match} /></Auth>)} />
+                            <Route component={NotFound} />
+                        </Switch>
                     )} />
-                </Fragment>
+                    <Route component={NotFound} />
+                </Switch>
             </Router>
         );
     }
