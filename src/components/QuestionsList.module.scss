@@ -1,0 +1,19 @@
+:global {
+  .question-list-enter {
+    opacity: 0.01;
+  }
+
+  .question-list-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  .question-list-exit {
+    opacity: 1;
+  }
+
+  .question-list-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+}

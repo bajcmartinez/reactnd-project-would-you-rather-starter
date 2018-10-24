@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QuestionCard from './QuestionCard';
+import QuestionList from "./QuestionsList";
 
 class Answered extends Component {
     render() {
@@ -9,9 +9,7 @@ class Answered extends Component {
 
         return (
             <div>
-                {questions && questions.map((questionId) => (
-                    <QuestionCard key={questionId} id={questionId}/>
-                ))}
+                <QuestionList questions={questions} />
             </div>
         )
     }

@@ -2,6 +2,7 @@ import { hideLoading, showLoading } from "./loading";
 import * as api from "../api";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 export const RESTORE_QUESTION = 'RESTORE_QUESTION';
 
@@ -9,6 +10,13 @@ export function receiveQuestions (questions) {
     return {
         type: RECEIVE_QUESTIONS,
         questions,
+    }
+}
+
+export function saveQuestion (question) {
+    return {
+        type: SAVE_QUESTION,
+        question,
     }
 }
 
@@ -33,6 +41,13 @@ export const handleLoadQuestions = () => (dispatch) => {
     return api.getQuestions().then((questions) => {
         dispatch(hideLoading());
         dispatch(receiveQuestions(questions));
+    });
+};
+
+export const handleSaveQuestion = (question) => (dispatch) => {
+    return api.saveQuestion(question).then((question) => {
+        //FIXME: Save also the user object with the link to the new question
+        dispatch(saveQuestion(question));
     });
 };
 

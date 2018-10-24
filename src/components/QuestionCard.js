@@ -39,10 +39,12 @@ class QuestionCard extends Component {
 
     handleVote = () => {
         const { dispatch, question, user } = this.props;
-        dispatch(handleSaveQuestionAnswer(user.id, question, this.state.selectedOption));
-        this.setState({
-            selectedOption: null
-        })
+        if (this.state.selectedOption != null) {
+            dispatch(handleSaveQuestionAnswer(user.id, question, this.state.selectedOption));
+            this.setState({
+                selectedOption: null
+            });
+        }
     };
 
     formatDate (timestamp) {

@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QuestionCard from './QuestionCard';
+import QuestionList from './QuestionsList';
 
 class Pending extends Component {
     render() {
         const { questions } = this.props;
 
         return (
-            <div>
-                {questions && questions.map((questionId) => (
-                    <QuestionCard key={questionId} id={questionId}/>
-                ))}
-            </div>
+            <QuestionList questions={questions} />
         )
     }
 }

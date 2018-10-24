@@ -34,6 +34,9 @@ class Auth extends Component {
                         <Navbar.Brand>{auth.user.name}, Would you rather?</Navbar.Brand>
                     </LinkContainer>
                     <Nav className="ml-auto">
+                        <LinkContainer to="/auth/add">
+                            <Nav.Link>Ask</Nav.Link>
+                        </LinkContainer>
                         <LinkContainer to="/auth/pending">
                             <Nav.Link>Pending</Nav.Link>
                         </LinkContainer>
