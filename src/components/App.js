@@ -10,6 +10,7 @@ import Answered from "./Answered";
 import NewQuestion from './NewQuestion';
 import Question from './Question';
 import NotFound from './NotFound';
+import Leaderboard from "./Leaderboard";
 
 class App extends Component {
     render() {
@@ -25,6 +26,7 @@ class App extends Component {
                             <Route exact path='/auth/add' render={() => (<Auth><NewQuestion /></Auth>)} />
                             <Route exact path='/auth/pending' render={() => (<Auth><Pending /></Auth>)} />
                             <Route exact path='/auth/answered' render={() => (<Auth><Answered /></Auth>)} />
+                            <Route exact path='/auth/leaderboard' render={() => (<Auth><Leaderboard /></Auth>)} />
                             <Route exact path='/auth/question/:id' render={({match}) => (<Auth><Question match={match} /></Auth>)} />
                             <Route component={NotFound} />
                         </Switch>

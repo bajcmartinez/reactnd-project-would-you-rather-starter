@@ -43,6 +43,9 @@ class Auth extends Component {
                         <LinkContainer to="/auth/answered">
                             <Nav.Link>Answered</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to="/auth/leaderboard">
+                            <Nav.Link>Leaderboard</Nav.Link>
+                        </LinkContainer>
                         <Nav.Link onClick={() => { this.logOut() }}>
                             Log Out
                         </Nav.Link>
