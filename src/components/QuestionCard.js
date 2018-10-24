@@ -98,6 +98,7 @@ class QuestionCard extends Component {
                             disabled={answered}
                             label={question.optionOne.text}
                             name={question.id}
+                            id={question.id+"_optionOne"}
                             value="optionOne"
                             checked={currentOption === "optionOne"}
                             onChange={this.handleSelection}
@@ -112,6 +113,7 @@ class QuestionCard extends Component {
                             disabled={answered}
                             label={question.optionTwo.text}
                             name={question.id}
+                            id={question.id+"_optionTwo"}
                             value="optionTwo"
                             checked={currentOption === "optionTwo"}
                             onChange={this.handleSelection}
