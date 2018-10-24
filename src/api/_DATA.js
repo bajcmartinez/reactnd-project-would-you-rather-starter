@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: null,
+    avatarURL: 'https://i1.wp.com/nofiredrills.com/wp-content/uploads/2016/10/myavatar.png?resize=300%2C300&ssl=1',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: null,
+    avatarURL: 'http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: null,
+    avatarURL: 'https://inkscapetutorials.files.wordpress.com/2013/09/maleavatarthumb.png?w=300',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

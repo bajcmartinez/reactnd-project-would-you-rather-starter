@@ -22,7 +22,7 @@ function mapStateToProps ({ questions, auth }) {
         questions: Object.keys(questions).filter((id) => {
             const question = questions[id];
             return !question.optionOne.votes.includes(auth.user.id) && !question.optionTwo.votes.includes(auth.user.id)
-        })
+        }).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     }
 }
 

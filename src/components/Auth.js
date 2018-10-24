@@ -29,13 +29,13 @@ class Auth extends Component {
         return (
             <div>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">Would you rather?</Navbar.Brand>
+                    <Navbar.Brand href="#home">{auth.user.name}, Would you rather?</Navbar.Brand>
                     <Nav className="ml-auto">
                         <LinkContainer to="/auth/pending">
                             <Nav.Link>Pending</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/auth/answered">
-                            <Nav.Link href="#features">Answered</Nav.Link>
+                            <Nav.Link>Answered</Nav.Link>
                         </LinkContainer>
                         <Nav.Link onClick={() => { this.logOut() }}>
                             Log Out
