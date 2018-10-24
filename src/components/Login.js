@@ -34,9 +34,9 @@ class Login extends Component {
         const { auth, loading } = this.props;
         const { username } = this.state;
 
-        // If you are already logged in, redirect to dashboard, nothing to do here
+        // If you are already logged in, redirect to pending, nothing to do here
         if (auth.user != null) {
-            return (<Redirect to='/auth/dashboard' />)
+            return (<Redirect to='/auth/pending' />)
         }
 
         return (
