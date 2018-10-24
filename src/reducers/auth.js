@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, LOG_IN, LOG_IN_ERROR, LOG_OUT } from '../actions/auth'
+import {RECEIVE_USERS, LOG_IN, LOG_IN_ERROR, LOG_OUT, USER_ANSWERED, USER_ASKED} from '../actions/auth'
 
 export default function loading (state = {}, action) {
     switch (action.type) {
@@ -6,6 +6,34 @@ export default function loading (state = {}, action) {
             return {
                 ...state,
                 users: { ...action.users },
+            };
+        case USER_ANSWERED:
+            return {
+                ...state,
+                users: {
+                    ...state.users,
+                    [state.user.id]: {
+                        ...state.users[state.user.id],
+                        answers: {
+                            ...state.users[state.user.id].answers,
+                            [action.question]: action.answer
+                        }
+                    }
+                }
+            };
+        case USER_ASKED:
+            return {
+                ...state,
+                users: {
+                    ...state.users,
+                    [state.user.id]: {
+                        ...state.users[state.user.id],
+                        questions: [
+                            ...state.users[state.user.id].questions,
+                            action.question.id
+                        ]
+                    }
+                }
             };
         case LOG_IN:
             return state.users ? {

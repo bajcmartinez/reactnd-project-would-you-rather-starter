@@ -1,5 +1,6 @@
 import { hideLoading, showLoading } from "./loading";
 import * as api from "../api";
+import { userAnswered, userAsked } from "./auth";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
@@ -46,15 +47,16 @@ export const handleLoadQuestions = () => (dispatch) => {
 
 export const handleSaveQuestion = (question) => (dispatch) => {
     return api.saveQuestion(question).then((question) => {
-        //FIXME: Save also the user object with the link to the new question
         dispatch(saveQuestion(question));
+        dispatch(userAsked(question));
     });
 };
 
 export const handleSaveQuestionAnswer = (userId, question, answer) => (dispatch) => {
-    //FIXME: Save also the user object, and restore the user object
     dispatch(saveQuestionAnswer(userId, question.id, answer));
-    return api.saveQuestionAnswer({ authedUser: userId, qid: question.id, answer }).catch((error) => {
+    return api.saveQuestionAnswer({ authedUser: userId, qid: question.id, answer }).then(() => {
+        dispatch(userAnswered(question.id, answer));
+    }).catch((error) => {
         console.warn("Error saving the answer: ", error);
         // If something goes wrong restore the question as it was
         dispatch(restoreQuestion(question));
