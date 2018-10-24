@@ -8,24 +8,27 @@ import { handleSaveQuestionAnswer } from "../actions/questions";
 class QuestionCard extends Component {
     state = {
         selectedOption: null,
-        disabled: false
+        answeredOption: null,
+        answered: false
     };
 
-    componentWillMount() {
-        const { question, user } = this.props;
+    static getDerivedStateFromProps(props) {
+        const { question, user } = props;
 
-        let selectedOption = null;
+        if (!question) return;
 
-        if (question.optionOne.votes.includes(user.id))
-            selectedOption = 'optionOne';
+        let answeredOption = null;
+        if (question.optionOne.votes.includes(user.id)) {
+            answeredOption = 'optionOne';
+        }
+        if (question.optionTwo.votes.includes(user.id)) {
+            answeredOption = 'optionTwo';
+        }
 
-        if (question.optionTwo.votes.includes(user.id))
-            selectedOption = 'optionTwo';
-
-        this.setState({
-            selectedOption,
-            answered: selectedOption !== null
-        })
+        return {
+            answeredOption,
+            answered: answeredOption !== null
+        }
     }
 
     handleSelection = (event) => {
@@ -37,23 +40,32 @@ class QuestionCard extends Component {
     handleVote = () => {
         const { dispatch, question, user } = this.props;
         dispatch(handleSaveQuestionAnswer(user.id, question, this.state.selectedOption));
+        this.setState({
+            selectedOption: null
+        })
     };
 
     formatDate (timestamp) {
-        const d = new Date(timestamp)
-        const time = d.toLocaleTimeString('en-US')
-        return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
+        const d = new Date(timestamp);
+        const time = d.toLocaleTimeString('en-US');
+        return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString();
     }
 
     render() {
         const { question, author } = this.props;
         const { answered } = this.state;
 
+        if (!question) {
+            return (<div>Loading...</div>)
+        }
+
         const title = answered ? `${author.name} asked, Would you rather...` : `${author.name} asks, Would you rather...`;
 
         const totalAnswers = question.optionOne.votes.length + question.optionTwo.votes.length;
         const optionOneAnswers = question.optionOne.votes.length;
         const optionTwoAnswers = question.optionTwo.votes.length;
+
+        const currentOption = this.state.selectedOption || this.state.answeredOption;
 
         return (
             <Card bg={answered ? 'success' : 'info'} text="white" className={style.question}>
@@ -76,7 +88,7 @@ class QuestionCard extends Component {
                             label={question.optionOne.text}
                             name={question.id}
                             value="optionOne"
-                            checked={this.state.selectedOption === "optionOne"}
+                            checked={currentOption === "optionOne"}
                             onChange={this.handleSelection}
                         />
 
@@ -90,7 +102,7 @@ class QuestionCard extends Component {
                             label={question.optionTwo.text}
                             name={question.id}
                             value="optionTwo"
-                            checked={this.state.selectedOption === "optionTwo"}
+                            checked={currentOption === "optionTwo"}
                             onChange={this.handleSelection}
                         />
 
@@ -113,7 +125,7 @@ class QuestionCard extends Component {
 function mapStateToProps ({ questions, auth }, {id}) {
     return {
         question: questions[id],
-        author: auth.users[questions[id].author],
+        author: questions[id] ? auth.users[questions[id].author] : null,
         user: auth.user
     }
 }

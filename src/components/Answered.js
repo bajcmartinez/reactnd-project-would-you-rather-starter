@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import QuestionCard from './QuestionCard';
 
-class Dashboard extends Component {
+class Answered extends Component {
     render() {
         const { questions } = this.props;
 
@@ -26,4 +26,4 @@ function mapStateToProps ({ questions, auth }) {
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Answered);

@@ -6,6 +6,7 @@ import Login from './Login';
 import Auth from './Auth';
 import Pending from './Pending';
 import Answered from "./Answered";
+import Question from './Question';
 
 class App extends Component {
     render() {
@@ -20,7 +21,7 @@ class App extends Component {
                         <Auth>
                             <Route path='/auth/pending' component={Pending} />
                             <Route path='/auth/answered' component={Answered} />
-                            <Route path='/auth/question/:id' component={Answered} />
+                            <Route path='/auth/question/:id' component={Question} />
                         </Auth>
                     )} />
                 </Fragment>

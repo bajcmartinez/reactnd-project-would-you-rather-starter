@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -23,13 +24,15 @@ class Auth extends Component {
 
         // If you are not logged in, redirect to login page
         if (auth.user == null) {
-            return (<Redirect to='/login' />)
+            return (<Redirect to={`/login?dest=${this.props.location.pathname}`} />)
         }
 
         return (
             <div>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">{auth.user.name}, Would you rather?</Navbar.Brand>
+                    <LinkContainer to="/auth/pending">
+                        <Navbar.Brand>{auth.user.name}, Would you rather?</Navbar.Brand>
+                    </LinkContainer>
                     <Nav className="ml-auto">
                         <LinkContainer to="/auth/pending">
                             <Nav.Link>Pending</Nav.Link>
@@ -61,4 +64,4 @@ function mapStateToProps ({ auth, loading }) {
     }
 }
 
-export default connect(mapStateToProps)(Auth);
+export default withRouter(connect(mapStateToProps)(Auth));

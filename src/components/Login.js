@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { Form, Button } from 'react-bootstrap';
+import queryString from 'query-string';
+import { Redirect } from 'react-router-dom';
 
 import * as style from './Login.module.scss';
 import Loading from './Loading';
@@ -31,12 +33,15 @@ class Login extends Component {
     }
 
     render() {
-        const { auth, loading } = this.props;
+        const { auth, loading, location } = this.props;
         const { username } = this.state;
+
+        const qs = queryString.parse(location.search);
+        const next = qs.dest || '/auth/pending';
 
         // If you are already logged in, redirect to pending, nothing to do here
         if (auth.user != null) {
-            return (<Redirect to='/auth/pending' />)
+            return (<Redirect to={next} />);
         }
 
         return (
@@ -72,4 +77,4 @@ function mapStateToProps ({ auth, loading }) {
     }
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));
