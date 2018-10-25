@@ -29,7 +29,7 @@ class App extends Component {
                                 <Route exact path='/auth/pending' component={Pending} />
                                 <Route exact path='/auth/answered' component={Answered} />
                                 <Route exact path='/auth/leaderboard' component={Leaderboard} />
-                                <Route exact path='/auth/question/:id' component={Question} />
+                                <Route exact path='/auth/questions/:id' component={Question} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Auth>

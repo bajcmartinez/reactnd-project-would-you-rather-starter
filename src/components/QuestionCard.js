@@ -87,7 +87,7 @@ class QuestionCard extends Component {
                     <Card.Title>
                         <img alt={author.name} src={author.avatarURL} className="img-thumbnail" />
                         &nbsp;
-                        <Link to={`/auth/question/${question.id}`} className="text-white">
+                        <Link to={`/auth/questions/${question.id}`} className="text-white">
                             {title}
                         </Link>
                     </Card.Title>
