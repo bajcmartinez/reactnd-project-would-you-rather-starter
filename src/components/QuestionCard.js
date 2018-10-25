@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, ListGroup, Button, FormCheck, ProgressBar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import * as style from './QuestionCard.module.scss';
 import { handleSaveQuestionAnswer } from "../actions/questions";
@@ -86,7 +87,9 @@ class QuestionCard extends Component {
                     <Card.Title>
                         <img alt={author.name} src={author.avatarURL} className="img-thumbnail" />
                         &nbsp;
-                        {title}
+                        <Link to={`/auth/question/${question.id}`} className="text-white">
+                            {title}
+                        </Link>
                     </Card.Title>
                     <Card.Text>
 

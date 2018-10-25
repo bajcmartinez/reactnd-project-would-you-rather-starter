@@ -23,14 +23,16 @@ class App extends Component {
                     <Route path='/' exact render={() => auth.user ? <Redirect to='/auth/pending' /> : <Redirect to='/login' />} />
                     <Route exact path='/login' component={Login} />
                     <Route path='/auth' render={() => (
-                        <Switch>
-                            <Route exact path='/auth/add' render={() => (<Auth><NewQuestion /></Auth>)} />
-                            <Route exact path='/auth/pending' render={() => (<Auth><Pending /></Auth>)} />
-                            <Route exact path='/auth/answered' render={() => (<Auth><Answered /></Auth>)} />
-                            <Route exact path='/auth/leaderboard' render={() => (<Auth><Leaderboard /></Auth>)} />
-                            <Route exact path='/auth/question/:id' render={({match}) => (<Auth><Question match={match} /></Auth>)} />
-                            <Route component={NotFound} />
-                        </Switch>
+                        <Auth>
+                            <Switch>
+                                <Route exact path='/auth/add' component={NewQuestion} />
+                                <Route exact path='/auth/pending' component={Pending} />
+                                <Route exact path='/auth/answered' component={Answered} />
+                                <Route exact path='/auth/leaderboard' component={Leaderboard} />
+                                <Route exact path='/auth/question/:id' component={Question} />
+                                <Route component={NotFound} />
+                            </Switch>
+                        </Auth>
                     )} />
                     <Route component={NotFound} />
                 </Switch>
