@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import QuestionList from './QuestionsList';
@@ -21,5 +22,9 @@ function mapStateToProps ({ questions, auth }) {
         }).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     }
 }
+
+Pending.propTypes = {
+    questions: PropTypes.array.isRequired
+};
 
 export default connect(mapStateToProps)(Pending);

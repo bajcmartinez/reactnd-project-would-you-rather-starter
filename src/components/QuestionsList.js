@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import './QuestionsList.module.scss';
@@ -31,3 +32,6 @@ export default function QuestionList(props) {
     )
 }
 
+QuestionList.propTypes = {
+  questions: PropTypes.array.isRequired
+};

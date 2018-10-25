@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import {Card, ListGroup, Form, Button} from "react-bootstrap";
 import { connect } from "react-redux";
@@ -79,5 +80,11 @@ function mapStateToProps ({ questions, auth }, {id}) {
         user: auth.user
     }
 }
+
+NewQuestion.propTypes = {
+    dispatch: PropTypes.func,
+    history: PropTypes.object,
+    user: PropTypes.object
+};
 
 export default withRouter(connect(mapStateToProps)(NewQuestion));

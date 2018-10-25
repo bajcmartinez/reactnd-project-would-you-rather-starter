@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, ListGroup, Button, FormCheck, ProgressBar } from 'react-bootstrap';
 
@@ -142,5 +143,12 @@ function mapStateToProps ({ questions, auth }, {id}) {
         user: auth.user
     }
 }
+
+QuestionCard.propTypes = {
+    author: PropTypes.object,
+    dispatch: PropTypes.func,
+    question: PropTypes.object,
+    user: PropTypes.object
+};
 
 export default connect(mapStateToProps)(QuestionCard);

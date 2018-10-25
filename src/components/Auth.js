@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
@@ -70,4 +71,13 @@ function mapStateToProps ({ auth, loading }) {
     }
 }
 
+Auth.propTypes = {
+    auth: PropTypes.object.isRequired,
+    children: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired
+};
+
 export default withRouter(connect(mapStateToProps)(Auth));
+

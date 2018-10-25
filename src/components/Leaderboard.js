@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import UserCard from "./UserCard";
@@ -24,5 +25,10 @@ function mapStateToProps ({ auth }) {
         users: users
     }
 }
+
+Leaderboard.propTypes = {
+    users: PropTypes.object.isRequired,
+    usersIds: PropTypes.array.isRequired
+};
 
 export default connect(mapStateToProps)(Leaderboard);

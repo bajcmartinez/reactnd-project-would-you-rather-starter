@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card, ListGroup, Badge } from 'react-bootstrap';
 
 import * as style from './QuestionCard.module.scss';
@@ -55,3 +56,8 @@ class UserCard extends Component {
 }
 
 export default UserCard;
+
+UserCard.propTypes = {
+  position: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired
+}

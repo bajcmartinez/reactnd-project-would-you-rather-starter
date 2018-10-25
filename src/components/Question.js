@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import QuestionCard from './QuestionCard';
 
@@ -13,3 +14,7 @@ class Question extends Component {
 }
 
 export default Question;
+
+Question.propTypes = {
+  match: PropTypes.object.isRequired
+}

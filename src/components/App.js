@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Login from './Login';
 import Auth from './Auth';
@@ -38,11 +39,15 @@ class App extends Component {
     }
 }
 
-function mapStateToProps ({ loading, auth }) {
+function mapStateToProps ({ auth }) {
     return {
-        loading,
         auth
     }
 }
 
+App.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
 export default connect(mapStateToProps)(App)
+
