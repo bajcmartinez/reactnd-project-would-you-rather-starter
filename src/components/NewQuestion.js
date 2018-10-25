@@ -15,13 +15,13 @@ class NewQuestion extends Component {
 
     handleOptionOneText = (event) => {
         this.setState({
-            optionOneText: event.target.value.trim()
+            optionOneText: event.target.value
         })
     };
 
     handleOptionTwoText = (event) => {
         this.setState({
-            optionTwoText: event.target.value.trim()
+            optionTwoText: event.target.value
         })
     };
 
